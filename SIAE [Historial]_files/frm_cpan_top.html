@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)https://www.dgae-siae.unam.mx/frm_cpan_top.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Top</title>
+  
+  <script type="text/javascript">AC_FL_RunContent = 0;</script>
+  <script type="text/javascript" src="./jquery-2.1.1.js"></script>
+  <script type="text/javascript" src="./jquery.alerts.js"></script>
+  <script type="text/javascript" src="./bootstrap.3.3.6.js"></script>
+  <script type="text/javascript" src="./fss.js"></script>
+  <script type="text/javascript" src="./fss.shader.top.js"></script>
+  <link rel="stylesheet" type="text/css" href="./bootstrap.3.3.6.css">
+  <link rel="stylesheet" type="text/css" href="./font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="./siae.general.css">
+  <link rel="stylesheet" type="text/css" href="./siae.gate.css">
+  <link rel="stylesheet" type="text/css" href="./jquery.alerts.css">
+  
+  <script language="javascript">
+	 
+	$(document).ready(function(){
+
+		$("#heart").click(function(e){
+			$(this).toggleClass("diastole sistole");
+		});
+
+		var refreshId = setInterval(function () {
+		
+			$.ajax({
+				url: 'fmt_cpan_ses.php?' + new Date().getTime(),
+				type: 'GET',
+				dataType: "json",
+				success: function(JSONdata){ 
+
+					//console.log(JSONdata);
+
+					if(JSONdata.auto==1 && JSONdata.logi == $("#heart").attr('rel')){
+						$("#heart").trigger('click');
+					}
+					else{
+						$("#heart").toggleClass("fa-heart fa-unlink");
+						$("#heart").addClass("off");
+					}
+
+				},
+				error: function(JSONdata) {
+					$("#heart").toggleClass("fa-heart fa-unlink");
+					$("#heart").addClass("off");
+				}
+			});
+		
+		},60000);
+
+	});
+
+  </script>
+
+</head>
+<body marginwidth="0" marginheight="0">
+
+	<!-- Shader -->
+
+	<div id="shader" class="shader">
+
+	    <div id="logos" class="row">
+	        <div class="text-center col-lg-3 col-sm-3 col-xs-3">
+	            <a href="http://www.unam.mx/" target="_blank">
+	                 <img id="cd-unam" width="130" src="./escudo_unam_gold.svg" alt="Escudo UNAM">
+	            </a>
+	        </div>
+	         <div class="col-lg-5 col-sm-5 col-xs-5 cd-encabezado">
+	         	<div class="encabezado">
+			         Universidad Nacional Autónoma de México<br>
+			         Dirección General de Administración Escolar<br>
+			         Subdireccion de Sistemas de Registro Escolar<br>
+			         Sistema Integral de Administración Escolar
+		         </div>
+	        </div>
+	        <div class="text-right col-lg-2 col-sm-2 col-xs-2">
+	            <a href="http://www.dgae.unam.mx/" target="_blank">
+	                 <img id="cd-dgae" width="130" src="./escudo_dgae_color.svg" alt="Logo DGAE">
+	            </a>
+	        </div>
+	        <div class="text-left col-lg-2 col-sm-2 col-xs-2">
+	            <a href="https://www.dgae-siae.unam.mx/index.html" target="_blank">
+	                 <img id="cd-siae" width="130" src="./escudo_siae_color.svg" alt="Logo SIAE">
+	            </a>
+	        </div>
+	    </div>
+
+	    <div id="output" class="container_canvas"></div>
+
+	</div>
+
+	<div id="menu">
+
+		<div class="icons">
+		
+			<a href="javascript:parent.bdy.focus(); parent.bdy.print();" alt="Imprimir" title="Imprimir">
+				<i class="fa fa-print" aria-hidden="true"></i>
+			</a> 
+			<a href="javascript:parent.bdy.history.back();" alt="Regresar" title="Regresar">
+				<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			</a> 
+			<a href="javascript:parent.bdy.history.forward();" alt="Avanzar" title="Avanzar">
+				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+			</a>
+
+			<i id="heart" class="fa fa-heart diastole sistole" aria-hidden="true" alt="Sesión" title="Sesión" rel="319027558"></i>
+
+			<i class="fa fa-user" aria-hidden="true" alt="Usuario" title="Usuario"></i>
+
+		</div>
+
+        Pacheco Garcia David 
+	</div>
+
+</body></html>

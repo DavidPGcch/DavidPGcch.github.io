@@ -1,0 +1,1740 @@
+/*siae-general Mon, 13 Jan 2020 18:34:27*/
+/*================================================== [  GENERAL ]  ================================================== */
+
+@CHARSET "iso-8859-1";
+
+/* [ Reset ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/*
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th { font-size: 1em; font-weight: normal; font-style: normal; }
+ul,ol { list-style: none; }
+fieldset,img { border: none; }
+caption,th { text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+*/
+
+/*html, body { height: 100%;	overflow: auto; } */ /* fixed para IE */
+
+
+/* [  Layout ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.min-height {
+height:200px;
+float:right;
+width:1px;
+}
+
+.right {
+float: right;
+}
+.left {
+float: left;
+}
+.align-left {
+text-align: left;
+}
+.align-right {
+text-align: right;
+}
+.align-center {
+text-align:center;
+}
+.justify {
+text-align:justify;
+}
+.hide {
+display: none;
+}
+.clear {
+clear: both;
+}
+.bold {
+font-weight:bold;
+}
+.italic {
+font-style:italic;
+}
+.underline {
+border-bottom:1px solid;
+}
+.highlight {
+background:#ffc;
+}
+.actualiza{
+background: white url('/img/ui/ajax_loader_ring.gif') no-repeat center center;
+position:fixed;
+display:none;
+width:100%;
+height:100%;
+left:0;
+top:0;
+z-index:1010;
+}
+/*Fixed simulado para ie6*/
+* html .actualiza {
+position: absolute;
+top: expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+100+"px" : body.scrollTop+100+"px");
+}
+/*
+* html .actualiza {
+  position: absolute;
+  top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+*/
+img.centered {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+img.alignleft {
+float:left;
+/*margin:4px 10px 4px 0;*/
+}
+img.alignright {
+float:right;
+/*margin:4px 0 4px 10px;*/
+}
+
+.clearfix:after {
+content: ".";
+display: block;
+clear: both;
+visibility: hidden;
+line-height: 0;
+height: 0;
+}
+.clearfix {
+display: block;
+}
+html[xmlns] .clearfix {
+display: block;
+}
+* html .clearfix {
+height: 1%;
+}
+
+.transparent_class {  
+  filter:alpha(opacity=50);  
+  -moz-opacity:0.5;  
+  -khtml-opacity: 0.5;  
+  opacity: 0.5;  
+}
+.curved {
+border-radius: 3px; // propiedad CSS3
+-ms-border-radius: 3px; // para IE 8
+-moz-border-radius:3px; // Firefox
+-webkit-border-radius: 3px; // WebKit y Safari
+-khtml-border-radius: 3px;
+}
+
+table.datos {
+  font: 10px "Arial Narrow",arial,helvetica,sans-serif;
+  text-transform: uppercase;
+  margin:0px;
+  padding:0px;
+}
+/*  Proporciona el diseño líquido. Para internet explorer se usa
+  las malísismas expression
+*/
+div#contenedor{
+  min-width: 745px;
+  width: expression(document.body.clientWidth < 745?"745px":"auto");
+  padding:0px 5px 0px 5px;
+}
+/* Contiene los títulos de UNAM, DGAE, SSRE */
+div#titulo{
+  font: x-small Arial,Helvetica,sans-serif;
+  padding-top: 20px;
+  text-align:center;
+}
+span.tituloUNAM{
+  font: inherit;
+  font-weight:bold;
+}
+span.tituloServidor{
+  color: #ffffff;
+  padding: 1px;
+  position:fixed;
+  right:5px; top:93px;
+}
+
+span.tituloServidor i{
+  color: #f8b500;
+  padding: 5px;
+}
+
+#logo_siae{
+/*position: relative;
+top: 500px;
+left: 0px;*/
+}
+/*  Titulo del módulo */
+div.nombre{
+  font: 18px Arial, Helvetica, sans-serif;
+  margin-top: 15px;
+  text-align:center;
+}
+/*  Fecha */
+div#fecha{
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  text-align:right;
+}
+
+/* Mensajes de www_siae */
+
+#msg{
+  position:relative;
+  width:250px;
+  margin:10% auto;
+}
+#msg > div{
+  border:1px #000 solid;
+  text-align:center;
+  padding:3px;
+}
+.mensaje {
+  width: auto;
+  height: 20px;
+  display: inline;
+  font: normal 0.9em "Lucida Grande",Geneva,Arial,Verdana,sans-serif;
+  padding: 0px 6px 0px 6px;
+}
+.correcto{
+  color: #000;
+  background-color: #87cefa;
+  border: 1px solid #000;
+}
+.alerta{
+  color: #000;
+  background-color: #ffd700;
+  border: 1px solid #000;
+}
+.error{
+  color: #FFF;
+  background-color: #CC092F;
+  border: 1px solid #000;
+}
+.prf-actu-correo{
+  display: inline;
+  font-family: courier;
+  font-size: 1.23em;
+  font-weight: bold;
+  color: #000;
+  background-color: LightYellow;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.175);
+  border: 1px solid Gold;
+  padding: 7px;
+  margin-left: 11px;
+  border-radius: 6px;
+  animation: pulse-y 2s ease infinite;
+}
+@keyframes pulse-y {
+  0% {
+    border-color: rgba(255, 165, 0, 1);
+  }
+  50% {
+    border-color: rgba(255, 165, 0, 0.4);
+  }
+  100% {
+    border-color: rgba(255, 165, 0, 1);
+  }
+}
+.ico-conf-correo {
+  position: relative;
+  margin-top: 7px;
+  top: 5px;
+  color: GoldenRod;
+}
+.ico-sin-correo {
+  float: right;
+  position: relative;
+  margin-top: 7px;
+  left: -9px;
+  color: FireBrick;
+}
+.prf-sin-correo{
+  color: #000;
+  padding: 15px 15px 15px 15px;
+}
+
+
+/* [  Listas ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.list-main li{
+	list-style: none;
+	background: url(/img/ico/list-main.gif) left top no-repeat;
+	margin: 0px 0px;
+    padding-left: 20px;
+}
+.list-gold li{
+	list-style: none;
+	background: url(/img/ico/list-gold.gif) left top no-repeat;
+	margin: 0px 0px;
+  padding-left: 20px;
+}
+
+/* [  Tablas ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+table.tabla_zebra {
+	border-collapse: collapse;
+	width: auto;
+	margin: 24px;
+	font-size: 1.1em;
+	border-right: 1px solid #95bce2;
+	border-left: 1px solid #95bce2;
+}
+
+.tabla_zebra th {
+	line-height: 1.2;
+  font: normal 80% "Segoe UI", Verdana, Helvetica, Arial,sans-serif;
+  background: #003399 /*url(/temas/azulyoro/bar_back_50.gif) repeat-x*/;
+	color: #fff;
+	border-right: 1px solid #3C5F71;
+	border-left: 1px solid #B0CFE0;
+	border-bottom: 1px solid #3C5F71;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 6px 6px 6px 12px;
+}
+
+.tabla_zebra td {
+  font: normal 80% Verdana, Helvetica, Arial,sans-serif;
+	padding: 6px 11px;
+	border-bottom: 1px solid #95bce2;
+	vertical-align: top;
+}
+
+.tabla_zebra td * {
+	padding: 6px 11px;
+}
+
+.tabla_zebra tr td {
+	background: #ffffff;
+}
+
+.tabla_zebra tr.alt td {
+	background: #ecf6fc;
+}
+
+.tabla_zebra tr.over td {
+	background: #bcd4ec;
+}
+/* En la tabla de reinscripciones */
+.tabla_zebra td.nobordeinferior{
+	border-bottom-style:none;
+}
+.offColor {
+	background: #ECF6FC;
+}
+.actualizado{
+  background-color:#FFEFD5;
+}
+/*  Estas clases son usadas en los colores de las celdas
+  que se usan de forma regular en el sitio 
+*/
+
+table.datos,table.datos th,table.datos td{
+ font: 11px "Arial Narrow",Arial,Helvetica,sans-serif;
+ border: 1px black solid;
+ border-collapse:collapse;
+ padding:0px 5px 0px 5px;
+}
+table.datos tfoot{
+  text-align:left;
+}
+/*  Para cortes en una tabla */
+.azulClaro{
+  background-color: #7583AB;
+  color: black;
+}
+/*  Encabezado de información de la base de datos */
+.azul{
+  background-color: #192C69;
+  color:white;
+}
+/*  Encabezado de las acciones que realiza el módulo */
+.verde{
+  background-color: #196925;
+  color:white;
+}
+.verdeClaro{
+  background-color: #7583AB;
+  color:black;
+}
+.tipo{
+  background-color: #445588;
+  color:black;
+}
+.azulSistema{
+  background-color: #C2CAE0;
+  color:black;
+}
+/*  Los datos que son de la base colocados
+  en una tabla */
+.datos{
+  background-color: #F5F5F5;
+}
+/*  El espacio de paramétros de búsqueda */
+.gris{
+  background-color: silver;
+}
+/*  Información adicional */
+.blanco{
+  background-color: white;
+}
+/*  Elemento seleccionado */
+.hover{
+  background-color:#ffffcc !important;
+}
+/* evita que se divida por la mitad la etiqueta label y select.
+Este selector debe ir en un span que envuelva a label y select*/
+.noCorte{
+	display:inline-block;
+	*white-space:nowrap;
+}
+/*suberindice*/
+.superindice{
+	vertical-align:super;
+	font-size:70% !important;
+}
+.fantasma{
+	font-style: italic;
+	color:gray;
+}
+
+/* [ Por Migrar ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+td, th {
+  font-family : Arial, Helvetica, sans-serif;
+  font-size : x-small;
+}
+a:LINK, a:VISITED {
+  color : #192C69;
+  text-decoration : none;
+}
+a:ACTIVE, a:HOVER {
+  color : Black;
+  text-decoration : none;
+}
+.LnkMnu:LINK, .LnkMnu:VISITED {
+  color: #DCDCDC;
+  text-decoration: none;
+  font: bold x-small "MS Sans Serif", Geneva, sans-serif;
+}
+.LnkMnu:ACTIVE, .LnkMnu:HOVER {
+  color: White;
+  text-decoration: none;
+  font: bold x-small "MS Sans Serif", Geneva, sans-serif;
+}
+.LnkTry:LINK, .LnkTry:VISITED {
+  color: #FFD700;
+  text-decoration: none;
+}
+.LnkTry:ACTIVE, .LnkTry:HOVER {
+  color: #FAFAD2;
+  text-decoration: none;
+}
+.LnkSla:LINK, .LnkSla:VISITED {
+  color: Maroon;
+  text-decoration: none;
+}
+.LnkSla:ACTIVE, .LnkSla:HOVER {
+  color: Black;
+  text-decoration: none;
+}
+.ImgBlk {
+  border: 1px black solid;
+}
+.TitNfo{
+  color: #000066;
+  Cursor:help;
+}
+
+/* [ Tablas ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.TblBlk {
+  border-right: 1px solid Black;
+  border-top: 1px solid Black;
+}
+
+.CellTit, .CellSti, .CellSpa, .CellLbl, .CellDat, .CellIco,
+.CellTxt, .CellCtr, .CellTiI, .CellTiD, .CellStD, .CellDaD,
+.CellSoD, .CellToD, .CellSot, .CellTot, .CellNot, .CellImg,
+.CellSel, .CellVal, .CellInv, .CellErr, .CellNfo, .CellFEA,
+.CellCmb, .CellLblDis, .CellDatDis, .CellTiI2, .CellCtr2,
+.CellGr1, .CellGr2, .CellGr3, .CellGr3, .CellGr4, .CellGr5,
+.CellYe1, .CellYe2, .CellYe3, .CellYe3, .CellYe4, .CellYe5, 
+.CellRd1, .CellRd2, .CellRd3, .CellRd3, .CellRd4, .CellRd5, 
+.CellBl1, .CellBl2, .CellBl3, .CellBl3, .CellBl4, .CellBl5 {
+  border-left: 1px solid Black;
+  border-bottom: 1px solid Black;
+  font : 8pt "Arial Narrow", Arial, Helvetica, sans-serif;
+  /*font : 8pt "Arial Narrow",Arial,"Helvetica Narrow", Helvetica, Tahoma, sans-serif;*/
+  font-stretch: condensed;
+}
+
+.CellTns {
+  border: 0 !important;
+  font : 8pt "Arial Narrow", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+}
+
+select {
+  font : 8pt "Arial Narrow", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+}
+
+.CellTit {
+  background-color: #192C69;
+  color: White;
+}
+.CellSti {
+  background-color: #7583ab;
+  color: White;
+}
+.CellSpa {
+  background-color : #C2CAE0;
+  color : Black;
+}
+.CellLbl {
+  background-color: #C2CAE0;
+  color: Black;
+}
+.CellDat {
+  background-color : #F5F5F5;
+  color : Black;
+}
+.CellIco {
+  background-color : #DCDCDC;
+  color : Black;
+}
+.CellTxt {
+  background-color : #E6E6E6;
+  color : Black;
+}
+.CellCtr {
+  background-color : Silver;
+  color : Black;
+}
+.CellCtr2 {
+  background-color : #f5f5f5;
+  color : Black;
+}
+.CellTot {
+  background-color: #D9DEEC;
+  color: Black;
+}
+.CellSot {
+  background-color: #E8EBF4;
+  color: Black;
+}
+.CellTiD {
+  background-color: #196925;
+  color: White;
+}
+.CellStD {
+  background-color: #75ab7d;
+  color: White;
+}
+.CellDaD {
+  background-color : #ffffff;
+  color : Black;
+}
+.CellToD {
+  background-color: #d9ecdb;
+  color: Black;
+}
+.CellSoD {
+  background-color: #e8f4ea;
+  color: Black;
+}
+.CellTiI2 {
+  background-color: #e8f4ea;
+  color: White;
+}
+.CellTiI {
+  background-color: #445588;
+  color: White;
+}
+.CellSel {
+  background-color: #FFB6C1;
+  border: 1px outset Silver;
+  color: Black;
+}
+.CellTns {
+  background-color : transparent;
+  color : Black;
+}
+.CellImg {
+  background-color : White;
+  color : Black;
+}
+.CellNot {
+  background-color: #FFD700;
+  color: Black;
+}
+.CellVal {
+  background-color: #90EE90;
+  color: Black;
+}
+.CellInv {
+  background-color: #FFB6C1;
+  color: Black;
+}
+.CellErr {
+  background-color: Red;
+  color: Black;
+}
+.CellNfo {
+  background-color: #FFFFE1;
+  color: Black;
+}
+.CellFEA {
+  background-color: #E4E4EE;
+  color: Black;
+}
+.CellCmb{
+	background-color: #ECEFF6;
+	font-weight: bold;
+	font-size: 11px;
+  animation:         CmbCampo 1s infinite alternate backwards; /* CSS3 */
+  -moz-animation:    CmbCampo 1s infinite alternate backwards; /* Firefox */
+  -webkit-animation: CmbCampo 1s infinite alternate backwards; /* Webkit */
+}
+@keyframes CmbCampo { /* CSS3 */
+  0%   { background-color: transparent; }
+  100% { background-color: #ffdfdf; }
+}
+@-moz-keyframes CmbCampo { /* Firefox */
+  0%   { background-color: transparent; }
+  100% { background-color: #ffdfdf; }
+}
+@-webkit-keyframes CmbCampo { /* Webkit */
+  0%   { background-color: transparent; }
+  100% { background-color: #ffdfdf; }
+}
+.CellLblDis {
+  background-color: #B9B9B9;
+  color: #646464;
+}
+.CellDatDis {
+  background-color: #E6E6E6;
+  color: #646464;
+}
+.CellGr1 {
+  background-color: #2e7e39;
+  color: white;
+}
+.CellGr2 {
+  background-color: #52955c;
+  color: white;
+}
+.CellGr3 {
+  background-color: #a0c8a5;
+  color: black;
+}
+.CellGr4 {
+  background-color: #c7e1ca;
+  color: black;
+}
+.CellGr5 {
+  background-color: #f7fff8;
+  color: black;
+}
+.CellRd1 {
+  background-color: #933d3e;
+  color: white;
+}
+.CellRd2 {
+  background-color: #ad6867;
+  color: white;
+}
+.CellRd3 {
+  background-color: #c69393;
+  color: black;
+}
+.CellRd4 {
+  background-color: #e0bfbf;
+  color: black;
+}
+.CellRd5 {
+  background-color: #fffefe;
+  color: black;
+}
+.CellBl1, .azul-01 {
+  background-color: #536395;
+  color: white;
+}
+.CellBl2, .azul-02 {
+  background-color: #7986af;
+  color: white;
+}
+.CellBl3, .azul-03 {
+  background-color: #a0aac8;
+  color: black;
+}
+.CellBl4, .azul-04 {
+  background-color: #c7cde1;
+  color: black;
+}
+.CellBl5, .azul-05 {
+  background-color: #eef1fb;
+  color: black;
+}
+.CellYe1 {
+  background-color: #ffbb29;
+  color: black;
+}
+.CellYe2 {
+  background-color: #ffc854;
+  color: black;
+}
+.CellYe3 {
+  background-color: #ffd77f;
+  color: black;
+}
+.CellYe4 {
+  background-color: #ffe5ab;
+  color: black;
+}
+.CellYe5 {
+  background-color: #fffaf0;
+  color: black;
+}
+.TxtSdw {
+  color: Black;
+  font-family: "MS Sans Serif", Geneva, sans-serif;
+  filter: Shadow(Color=#AAAAAA, Direction=135);
+  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+.ico-gpos{
+  display: inline;
+  float: left;
+  padding: 0px;
+}
+.con-ico-gpos{
+  text-align: center;
+  padding: 20px;
+  width: 521px;
+  height: 200px;
+  margin: 0px auto -1px auto;
+}
+
+/* [ Formas ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#login {
+  width:300px;
+  text-align: left;
+  border: 1px;
+}
+#loginform {
+overflow:hidden;
+width:350px;
+margin:auto;
+}
+#loginform fieldset{
+padding:10px;
+border:1px solid #bbb;
+padding:10px;
+position:relative;
+margin-bottom:10px;
+}
+#loginform legend{
+padding:.4em .8em;
+border:1px solid #bbb;
+}
+#loginform label{
+display:block;
+height:2em;
+padding:10px 10px 0;
+}
+#loginform input[type="text"], #loginform input[type="password"], #loginform select {
+margin-right:20px;
+float:right;
+clear:right;
+}
+
+input[type="text"]{
+  border: 1px solid silver;
+  -moz-border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
+}
+
+legend, fieldset, input {
+-moz-border-radius: 5px !important;
+-webkit-border-radius: 5px !important;
+}
+.focusField{  
+border:solid 2px #95bce2;  
+background:#ecf6fc;  
+color:#000;  
+}  
+.idleField{  
+background:#FFF;  
+color: #6F6F6F;  
+border: solid 2px #DFDFDF;  
+}
+
+
+/* thoughtbot (inspired by thoughtbot.com)
+*******************************************************************************/
+.thoughtbot {
+  background-color: #bd2814;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ee432e 0%), to(#c63929 50%));
+  /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: -moz-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: -ms-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: -o-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  background-image: linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+  border: 1px solid #951100;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+  -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+  -ms-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+  -o-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+  color: #fff;
+  font: bold 12px "helvetica neue", helvetica, arial, sans-serif;
+  line-height: 1;
+  padding: 12px 0 14px 0;
+  text-align: center;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+}
+  .thoughtbot:hover {
+    background-color: #f37873;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f37873 0%), to(#db504d 50%));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: -moz-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: -ms-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: -o-linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    background-image: linear-gradient(top, #f37873 0%, #db504d 50%, #cb0500 50%, #a20601 100%);
+    cursor: pointer; }
+  .thoughtbot:active {
+    background-color: #d43c28;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#d43c28 0%), to(#ad3224 50%));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: -moz-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: -ms-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: -o-linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    background-image: linear-gradient(top, #d43c28 0%, #ad3224 50%, #9c1500 50%, #700d00 100%);
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+    -ms-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+    -o-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4);
+    box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4); }
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button:not(.btn):not(.button) {
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 8px;*/
+  color: #050505;
+  /*padding: 0px;*/
+  /*margin: 1px;*/
+  background: -moz-linear-gradient(
+    top,
+    #ffffff 0%,
+    #ebebeb 50%,
+    #dbdbdb 50%,
+    #b5b5b5);
+  background: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ffffff),
+    color-stop(0.50, #ebebeb),
+    color-stop(0.50, #dbdbdb),
+    to(#b5b5b5));
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #949494;
+  -moz-box-shadow:
+    0px 1px 3px rgba(000,000,000,0.5),
+    inset 0px 0px 2px rgba(255,255,255,1);
+  -webkit-box-shadow:
+    0px 1px 3px rgba(000,000,000,0.5),
+    inset 0px 0px 2px rgba(255,255,255,1);
+  box-shadow:
+    0px 1px 3px rgba(000,000,000,0.5),
+    inset 0px 0px 2px rgba(255,255,255,1);
+  text-shadow:
+    0px -1px 0px rgba(000,000,000,0.2),
+    0px 1px 0px rgba(255,255,255,1);
+}
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:not(.btn):not(.button) {
+  background-color:#bdbdbd;
+}
+input[type="submit"]:enabled:active,
+input[type="reset"]:enabled:hover,
+input[type="button"]:enabled:hover,
+button:not(.btn):not(.button) {
+  position:relative;
+  top:1px;
+}
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+input[type="button"]:disabled {
+  opacity: 0.5;
+}
+
+/* http://red-team-design.com/just-another-awesome-css3-buttons/ */
+
+.button {
+
+    display: inline-block;
+    white-space: nowrap;
+    /*background-color: #ffbd39;
+    background-image: linear-gradient(top, #eee, #ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+    border: 1px solid #777;*/
+    padding: 0 1.5em;
+    margin: 0.5em;
+    font: bold 1.3em/2.3em Arial, Helvetica;
+    text-decoration: none !important;
+    color: #fff !important;
+    /*text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    border-radius: .2em;
+    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);*/
+
+    /* default background-color */
+
+    background-color: #0a1a4c;
+
+    /* the mighty gradient */
+
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.6)), color-stop(0.49, rgba(255, 255, 255, 0.3)), color-stop(0.51, rgba(255, 255, 255, 0.0)), to(rgba(255, 255, 255, 0.2))); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* FF3.6+ */
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* Opera11.10+ */
+    background-image: linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* W3C */
+            
+    /* some nice roundy corners */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+
+    /* for links in chrome */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box; 
+    box-sizing: border-box; 
+
+    /* a very subtle drop-shadow that ehances the pressed button effect */
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow:    1px 1px 3px rgba(0, 0, 0, 0.30);
+    box-shadow:         1px 1px 3px rgba(0, 0, 0, 0.30); 
+
+    /* remove any inherited or default borders - especially important for the <button> element*/
+    border: 0 !important;
+
+    /* a subtle text inset effect which will also help to enhance the pressed button effect */
+    text-shadow:  rgba(255, 255, 255, 0.1) -1px 0, rgba(0, 0, 0, 0.6) 1px 1px;
+
+    /* and of course a little animated background-color fade effect */
+
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+
+}
+
+.button:hover {
+    background-color: #0f39c0;
+    /*box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+    background-image: linear-gradient(top, #fafafa, #ddd);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');*/
+}
+
+.button:active {
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+    position: relative;
+    top: 1px;
+}
+
+.button:focus {
+    outline: 0;
+    background-color: #0033ff;
+}    
+
+.button:before {
+
+    color: #fff;
+    float: left;        
+    width: 1.3em;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0 1em 0 -1em;
+    padding: 0 .2em;
+    /*box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);*/
+    border-radius: .15em 0 0 .15em;
+    pointer-events: none;        
+
+    background: #ffbd39; /* Old browsers */
+
+    background: -moz-linear-gradient(top,  #B8860B 0%, #FFD700 50%, #B8860B 51%, #e08e00 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top,  #B8860B 0%,#FFD700 50%,#B8860B 51%,#e08e00 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #B8860B 0%,#FFD700 50%,#B8860B 51%,#e08e00 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #B8860B 0%,#FFD700 50%,#B8860B 51%,#e08e00 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #B8860B 0%,#FFD700 50%,#B8860B 51%,#e08e00 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffbd39', endColorstr='#e08e00',GradientType=0 ); /* IE6-9 */
+
+}
+
+/* Hexadecimal entities for the icons */
+
+.add:before {
+    content: "\271A";
+}
+
+.edit:before {
+    content: "\270E";        
+}
+
+.delete:before {
+    content: "\2718";        
+}
+
+.save:before {
+    content: "\2713";        
+}
+
+.email:before {
+    content: "\2709";        
+}
+
+.like:before {
+    content: "\2764";        
+}
+
+.next2:before {
+    content: "\279C";
+}
+
+.star:before {
+    content: "\2605";
+}
+
+.spark:before {
+    content: "\2737";
+}
+
+.play:before {
+    content: "\25B6";
+}
+
+.search:before {
+    content: "\26B2";
+}
+
+/* Buttons and inputs */
+button.button, 
+input.button { 
+    cursor: pointer;
+    overflow: visible; /* removes extra side spacing in IE */
+}
+
+/* removes extra inner spacing in Firefox */
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* If line-height can't be modified, then fix Firefox spacing with padding */
+ input::-moz-focus-inner {
+  padding: .4em;
+}
+
+/* The disabled styles */
+.button[disabled], 
+.button[disabled]:hover {
+    background-color: #C0C0C0;
+    text-shadow: 0px 1px 0px #FFFFFF;
+    color: #696969;
+    border-color: #aaa;
+    cursor: default;
+    position: static;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.50);
+    -moz-box-shadow:    1px 1px 3px rgba(0, 0, 0, 0.50);
+    box-shadow:         1px 1px 3px rgba(0, 0, 0, 0.50);
+    box-shadow: none;
+}
+
+.button[disabled]:before {
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.7)), color-stop(100%,rgba(255,255,255,0.2))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.2) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.2) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.2) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.2) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#33ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+/* http://red-team-design.com/just-another-awesome-css3-buttons/ */
+
+.btn_AYO {
+
+    padding: 4px 12px !important;
+
+    color: #fff !important;
+
+    /* default background-color */
+
+    background-color: #0a1a4c !important;
+
+    /* the mighty gradient */
+
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.6)), color-stop(0.49, rgba(255, 255, 255, 0.3)), color-stop(0.51, rgba(255, 255, 255, 0.0)), to(rgba(255, 255, 255, 0.2))); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* FF3.6+ */
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* Opera11.10+ */
+    background-image: linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.0) 51%, rgba(255, 255, 255, 0.2) 100%); /* W3C */
+            
+    /* some nice roundy corners */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+
+    /* for links in chrome */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box; 
+    box-sizing: border-box; 
+
+    /* a very subtle drop-shadow that ehances the pressed button effect */
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow:    1px 1px 3px rgba(0, 0, 0, 0.30);
+    box-shadow:         1px 1px 3px rgba(0, 0, 0, 0.30); 
+
+    /* remove any inherited or default borders - especially important for the <button> element*/
+    border: 0 !important;
+
+    /* a subtle text inset effect which will also help to enhance the pressed button effect */
+    text-shadow:  rgba(255, 255, 255, 0.1) -1px 0, rgba(0, 0, 0, 0.6) 1px 1px;
+
+    /* and of course a little animated background-color fade effect */
+
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+
+}
+
+.btn_AYO:hover {
+    background-color: #003399 !important;
+    text-decoration: none;
+}
+
+.btn_AYO:disabled, .btn_AYO:disabled:hover {
+    background-color: #708090 !important;
+    color: gray;
+    text-shadow: none;
+}
+
+
+.btn_AYO:active {
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+    position: relative;
+    top: 1px;
+}
+
+.btn_AYO:focus {
+    outline: 0;
+    background-color: #003399 !important;
+}    
+
+.btn_AYO .fa{
+  color: gold;
+}
+
+.btn_AYO.folio{
+  padding: 10px;
+}
+
+select {
+  padding: 2px;
+  font: 1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  outline: none;
+  /*position: relative;*/
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+
+  -webkit-transition: width 1s ease;  
+  -moz-transition: width 1s ease;  
+  -o-transition: width 1s ease;  
+  -ms-transition: width 1s ease;  
+  transition: width 1s ease; 
+}
+
+select:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+/* Pure CSS Calendar Icon */
+
+.calendar{
+    margin:.25em 10px 10px 0;
+    padding-top:5px;
+    float:left;
+    width:50px;
+    background:#ededef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededef), to(#ccc)); 
+    background: -moz-linear-gradient(top,  #ededef,  #ccc); 
+    font:bold 20px/40px Arial Black, Arial, Helvetica, sans-serif;
+    text-align:center;
+    color:#000;
+    text-shadow:#fff 0 1px 0;   
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;  
+    position:relative;
+    -moz-box-shadow:0 2px 2px #888;
+    -webkit-box-shadow:0 2px 2px #888;
+    box-shadow:0 2px 2px #888;
+    }
+.calendar em{
+    display:block;
+    font:normal bold 11px/20px Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    color:#fff;
+    text-shadow:#00365a 0 -1px 0;   
+    background:#04599a;
+    background:-webkit-gradient(linear, left top, left bottom, from(#04599a), to(#00365a)); 
+    background:-moz-linear-gradient(top,  #04599a,  #00365a); 
+    -moz-border-radius-bottomright:3px;
+    -webkit-border-bottom-right-radius:3px; 
+    border-bottom-right-radius:3px;
+    -moz-border-radius-bottomleft:3px;
+    -webkit-border-bottom-left-radius:3px;  
+    border-bottom-left-radius:3px;  
+    border-top:1px solid #00365a;
+    }   
+.calendar:before, .calendar:after{
+    content:'';
+    float:left;
+    position:absolute;
+    top:4px;    
+    width:6px;
+    height:6px;
+    background:#111;
+    z-index:1;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    -moz-box-shadow:0 1px 1px #fff;
+    -webkit-box-shadow:0 1px 1px #fff;
+    box-shadow:0 1px 1px #fff;
+    }
+.calendar:before{left:7px;} 
+.calendar:after{right:7px;} 
+.calendar em:before, .calendar em:after{
+    content:'';
+    float:left;
+    position:absolute;
+    top:-3px;   
+    width:2px;
+    height:10px;
+    background:#dadada;
+    background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#aaa)); 
+    background:-moz-linear-gradient(top,  #f1f1f1,  #aaa); 
+    z-index:2;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    }
+.calendar em:before{left:9px;}
+.calendar em:after{right:9px;}
+
+/*================================================== [  IMPRESION ]  ================================================== */
+
+@media print {
+  body, td, th {
+    color : black !important;
+    background-color: white !important;
+    background-image: none !important;
+  }
+  td, th {
+    font : 7pt Arial, Helvetica, sans-serif !important;
+  }
+  .CellTit, .CellSpa {
+    font : 7pt Verdana, Geneva, Arial, Helvetica, sans-serif !important;
+  }
+  .CellLbl, .CellDat, .CellIco, .CellTxt, .CellCtr {
+    font : 7pt Arial Narrow, Arial, Helvetica, sans-serif !important;
+  }
+  SELECT, INPUT {
+    font : 7pt "MS Sans Serif", Geneva, sans-serif !important;
+  }
+  .CellSpa {
+    page-break-before: auto;
+  }  
+  .no-print, .cd-secondary-nav{
+    display:none;
+  }
+  #cd-intro {
+    height: 200px;
+    border-bottom: 1px dashed #cccccc;
+  }
+}
+
+/*================================================== [  SOLO PANTALLA ]  ================================================== */
+
+@media screen {
+  .no-screen {
+    display:none;
+  }
+
+}
+/* [  COOLjsTree ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.clsDemoNode:link, .clsDemoNode:visited{
+  color: Black;
+  font-weight: bold;
+  font-size: 9px;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+.clsDemoNode:active, .clsDemoNode:hover{
+  color: Black;
+  font-weight: bold;
+  font-size: 9px;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+.clsDemoNode1:link, .clsDemoNode1:visited{
+  color: Black;
+  font-size: 9px;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+.clsDemoNode1:active, .clsDemoNode1:hover{
+  color: Navy;
+  font-size: 9px;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px; /* Dialog will be no smaller than this */
+	max-width: 600px; /* Dialog will wrap after this width */
+	background: #FFF;
+	border: solid 5px #999;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#popup_title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.75em;
+	color: #666;
+	background: #CCC url(/img/ui/alerts/title.gif) top repeat-x;
+	border: solid 1px #FFF;
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(/img/ui/alerts/info.gif);
+	padding: 1em 1.75em;
+	margin: 0em;
+}
+
+#popup_content.alert {
+	background-image: url(/img/ui/alerts/info.gif);
+}
+
+#popup_content.confirm {
+	background-image: url(/img/ui/alerts/important.gif);
+}
+
+#popup_content.prompt {
+	background-image: url(/img/ui/alerts/help.gif);
+}
+
+#popup_message {
+	padding-left: 48px;
+}
+
+#popup_panel {
+	text-align: center;
+	margin: 1em 0em 0em 1em;
+}
+
+#popup_prompt {
+	margin: .5em 0em;
+}/* [  FaceBox 1.2 ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#facebox .b {
+  background:url(/img/ui/facebox/b.png);
+}
+
+#facebox .tl {
+  background:url(/img/ui/facebox/tl.png);
+}
+
+#facebox .tr {
+  background:url(/img/ui/facebox/tr.png);
+}
+
+#facebox .bl {
+  background:url(/img/ui/facebox/bl.png);
+}
+
+#facebox .br {
+  background:url(/img/ui/facebox/br.png);
+}
+
+#facebox .reglamento{
+  font: small "MS Sans Serif", Geneva, sans-serif;
+}
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+}
+
+#facebox .popup {
+  position: relative;
+}
+
+#facebox table {
+  border-collapse: collapse;
+}
+
+#facebox td {
+  font: small "MS Sans Serif", Geneva, sans-serif;
+  border-bottom: 0;
+  padding: 0;
+}
+
+#facebox .body {
+  font: small "MS Sans Serif", Geneva, sans-serif;
+  font-size: small;
+  padding: 10px;
+  background: #fff;
+  width: 370px;
+}
+#facebox .content,#facebox .footer {
+	background: #fff;
+}
+#facebox .loading {
+  text-align: center;
+}
+
+#facebox .image {
+  text-align: center;
+}
+
+#facebox img {
+  border: 0;
+  margin: 0;
+}
+
+#facebox .footer {
+  border-top: 1px solid #DDDDDD;
+  padding-top: 5px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+#facebox_overlay {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+/* [  jqModal ]  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* jqModal base Styling courtesy of;
+  Brice Burgess <bhb@iceburg.net> */
+
+/* The Window's CSS z-index value is respected (takes priority). If none is supplied,
+  the Window's z-index value will be set to 3000 by default (via jqModal.js). */
+  
+.jqmWindow {
+  display: none;
+
+  position: fixed;
+  top: 17%;
+  left: 50%;
+
+  margin-left: -300px;
+  width: 600px;
+
+  background-color: #EEE;
+  color: #333;
+  border: 1px solid black;
+  padding: 12px;
+}
+
+.jqmOverlay { background-color: #000; }
+
+/* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
+* iframe.jqm {position:absolute;top:0;left:0;z-index:-1;
+  width: expression(this.parentNode.offsetWidth+'px');
+  height: expression(this.parentNode.offsetHeight+'px');
+}
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html .jqmWindow {
+  position: absolute;
+  top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+div.whiteOverlay { background: white; }
+div.jqDrag {cursor: move;}
+
+/* jqmModal dialog CSS courtesy of;
+	Brice Burgess <bhb@iceburg.net> */
+
+div.jqmDialog {
+	display: none;
+    
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    
+    margin-left: -200px;
+	width: 400px;
+
+	overflow: hidden;
+	font-family:verdana,tahoma,helvetica;
+}
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html div.jqmDialog {
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+/* [[[ Title / Top Classes ]]] */
+div.jqmdTC { 
+	background: #d5ff84 url(/img/ui/dialog/sprite.gif) repeat-x 0px -82px; 
+	color: #fff;
+	padding: 7px 22px 5px 5px;
+	font-family:"sans serif",verdana,tahoma,helvetica;
+	font-weight: bold;
+	*zoom: 1;
+}
+div.jqmdTL { background: url(/img/ui/dialog/sprite.gif) no-repeat 0px -41px; padding-left: 3px;}
+div.jqmdTR { background: url(/img/ui/dialog/sprite.gif) no-repeat right 0px; padding-right: 3px; *zoom: 1;}
+
+
+/* [[[ Body / Message Classes ]]] */
+div.jqmdBC {
+	background: url(/img/ui/dialog/bc.gif) repeat-x center bottom;
+	padding: 7px 7px 7px;
+	height: 180px;
+	overflow: auto;
+}
+div.jqmdBL { background: url(/img/ui/dialog/bl.gif) no-repeat left bottom; padding-left: 7px; }
+div.jqmdBR { background: url(/img/ui/dialog/br.gif) no-repeat right bottom; padding-right: 7px; *zoom: 1 }
+
+div.jqmdMSG { color: #317895; }
+
+
+/* [[[ Button classes ]]] */
+input.jqmdX {
+	position: absolute;
+	right: 7px;
+	top: 4px;
+	padding: 0 0 0 16px;
+	height: 16px;
+	width: 0px;
+	background: url(/img/ui/dialog/close.gif) no-repeat top left;
+	overflow: hidden;
+}
+input.jqmdXFocus {background-position: bottom left; outline: none;}
+
+div.jqmdBC button {
+	margin: 8px 10px 4px 10px;
+	color: #777;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+div.jqmLogin {
+  font: 10pt "trebuchet MS", arial, verdana, sans-serif;
+  /*background: url(/propuesta/coda_archivos/login.png) no-repeat;*/
+  padding: 60px 50px 50px 100px;
+  width: 319px;
+  height: 164px;
+  margin-left: -159px;
+  z-index: 20;
+}
+div.jqmLogin label,div.jqmLogin input {
+  display: block;
+  width: 100px;
+  float: left;
+  margin-bottom: 10px;
+}
+
+div.jqmLogin label {
+  text-align: right;
+  width: 75px;
+  padding-right: 10px;
+}
+
+div.jqmLogin br {
+  clear: left;
+}
+
+/*div.jqmDialog input:focus, div.jqmDialog input.iefocus { background-color: #CFEFFF; }*/
+/**
+ Sexy Tooltips version 1.1
+*/
+
+div.sexy-tooltip .tooltip-tl {
+	background: url(/img/ui/sexytooltips/vista/tl.png) 0 bottom no-repeat;
+	position: relative; /* for close button */
+}
+
+div.sexy-tooltip .tooltip-tr {
+	padding: 0px 15px 0px 15px;
+	background: url(/img/ui/sexytooltips/vista/tr.png) 100% bottom no-repeat;
+}
+
+div.sexy-tooltip .tooltip-t {
+	background: url(/img/ui/sexytooltips/vista/t.png) 0 bottom repeat-x;
+	height:25px;
+}
+
+div.sexy-tooltip .tooltip-l {
+	background: url(/img/ui/sexytooltips/vista/l.png) 0 0 repeat-y;
+}
+
+div.sexy-tooltip .tooltip-r {
+	padding: 0px 15px 0px 15px;
+	background: url(/img/ui/sexytooltips/vista/r.png) 100% 0 repeat-y;
+}
+
+div.sexy-tooltip .tooltip-m {
+	background: #ffffff;
+	overflow: hidden;
+	width:100%;
+}
+
+div.sexy-tooltip .tooltip-bl {
+	background: url(/img/ui/sexytooltips/vista/bl.png) 0 0 no-repeat;
+}
+
+div.sexy-tooltip .tooltip-br {
+	padding: 0px 15px 0px 15px;
+	background: url(/img/ui/sexytooltips/vista/br.png) 100% 0 no-repeat;
+}
+
+div.sexy-tooltip .tooltip-b {
+	background: url(/img/ui/sexytooltips/vista/b.png) 0 0 repeat-x;
+	height:25px;
+}
+
+
+div.sexy-tooltip .tooltip-b .tooltip-c-arrow {
+	background: url(/img/ui/sexytooltips/vista/bca.png) 50% 0 no-repeat;
+	height:25px;
+}
+
+div.sexy-tooltip .tooltip-b .tooltip-l-arrow {
+	background: url(/img/ui/sexytooltips/vista/bla.png) 0 0 no-repeat;
+	height:25px;
+}
+
+div.sexy-tooltip .tooltip-b .tooltip-r-arrow {
+	background: url(/img/ui/sexytooltips/vista/bra.png) 100% 0 no-repeat;
+	height:25px;
+}
+
+div.sexy-tooltip .tooltip-t .tooltip-c-arrow {
+	background: url(/img/ui/sexytooltips/vista/tca.png) 50% 0 no-repeat;
+	height:25px;
+}
+
+div.sexy-tooltip .tooltip-t .tooltip-l-arrow {
+	background: url(/img/ui/sexytooltips/vista/tla.png) 0 0 no-repeat;
+	height:25px;
+}
+
+div.sexy-tooltip .tooltip-t .tooltip-r-arrow {
+	background: url(/img/ui/sexytooltips/vista/tra.png) 100% 0 no-repeat;
+	height:25px;
+}
+
+
+div.sexy-tooltip a.tooltip-close {
+  display:block;
+  overflow:hidden;
+	position: absolute;
+	top: 21px;
+	right: 10px;
+	width: 18px;
+	height: 18px;
+	background: url(/img/ui/sexytooltips/vista/close.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+
+div.sexy-tooltip a.tooltip-close span {
+  display:none;
+}
